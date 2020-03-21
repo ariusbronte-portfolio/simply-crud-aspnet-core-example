@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplyArchitecture.WebApi.DataAccess;
+using SimplyArchitecture.WebApi.Extensions;
 
 namespace SimplyArchitecture.WebApi
 {
@@ -22,6 +23,7 @@ namespace SimplyArchitecture.WebApi
             {
                 options.UseSqlite("Filename=database.db");
             });
+            services.AddSwaggerGenerator();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
         }
@@ -40,6 +42,16 @@ namespace SimplyArchitecture.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                // Middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+                // specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(setupAction: c =>
+                {
+                    c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "SimplyArchitectureV1");
+                });
             }
 
             app.UseHttpsRedirection();
