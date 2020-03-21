@@ -17,20 +17,20 @@ namespace SimplyArchitecture.WebApi.Dto
         ///     Gets person firstname.
         /// </summary>
         [Required]
-        [StringLength(128)]
+        [StringLength(maximumLength: 128)]
         public string FirstName { get; set; }
 
         /// <summary>
         ///     Gets person lastname.
         /// </summary>
         [Required]
-        [StringLength(128)]
+        [StringLength(maximumLength: 128)]
         public string LastName { get; set; }
 
         /// <summary>
         ///     Gets person age.
         /// </summary>
-        [GreaterThan(0)]
+        [GreaterThan(value: 0)]
         public int Age { get; set; }
     }
 }

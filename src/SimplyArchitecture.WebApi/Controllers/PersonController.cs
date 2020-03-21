@@ -15,7 +15,7 @@ namespace SimplyArchitecture.WebApi.Controllers
     public class PersonController : AbstractController<PersonEntity, PersonDto>
     {
         /// <inheritdoc />
-        public PersonController(IRepository<PersonEntity> repository, IMapper mapper) : base(repository, mapper)
+        public PersonController(IRepository<PersonEntity> repository, IMapper mapper) : base(repository: repository, mapper: mapper)
         {
         }
     }

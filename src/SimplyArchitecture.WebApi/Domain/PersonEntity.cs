@@ -6,10 +6,10 @@ namespace SimplyArchitecture.WebApi.Domain
     /// <summary>
     ///     Presents the essence of the persons.
     /// </summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Local")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "MemberCanBePrivate.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "AutoPropertyCanBeMadeGetOnly.Local")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMember.Global")]
     public class PersonEntity
     {
         /// <summary>

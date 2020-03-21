@@ -6,10 +6,10 @@ using SimplyArchitecture.WebApi.Domain;
 namespace SimplyArchitecture.WebApi.DataAccess
 {
     /// <inheritdoc />
-    [SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "SuggestBaseTypeForParameter")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMember.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnassignedGetOnlyAutoProperty")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMember.Global")]
     public class SimplyArchitectureDbContext : DbContext
     {
         /// <inheritdoc />

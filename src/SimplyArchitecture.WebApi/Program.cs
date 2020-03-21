@@ -15,7 +15,7 @@ namespace SimplyArchitecture.WebApi
         /// <param name="args">Command line arguments.</param>
         public static async Task Main(string[] args)
         {
-            await CreateHostBuilder(args).Build().RunAsync();
+            await CreateHostBuilder(args: args).Build().RunAsync();
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace SimplyArchitecture.WebApi
         /// <returns>The <see cref="Microsoft.Extensions.Hosting.IHostBuilder"/> so that additional calls can be chained.</returns>
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            return Host.CreateDefaultBuilder(args: args)
+                .ConfigureWebHostDefaults(configure: webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });

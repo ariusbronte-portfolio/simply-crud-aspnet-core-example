@@ -21,14 +21,14 @@ namespace SimplyArchitecture.WebApi
         /// <param name="services">Defines a contract for a collection of service descriptors.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SimplyArchitectureDbContext>(options =>
+            services.AddDbContext<SimplyArchitectureDbContext>(optionsAction: options =>
             {
-                options.UseSqlite("Filename=database.db");
+                options.UseSqlite(connectionString: "Filename=database.db");
             });
             
             services.AddAutoMapper();
             services.AddSwaggerGenerator();
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(serviceType: typeof(IRepository<>), implementationType: typeof(Repository<>));
             services.AddControllers();
         }
 
@@ -61,7 +61,7 @@ namespace SimplyArchitecture.WebApi
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(configure: endpoints =>
             {
                 endpoints.MapControllers();
             });
