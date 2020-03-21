@@ -13,7 +13,7 @@ namespace SimplyArchitecture.WebApi.Extensions
     /// <summary>
     ///     Extension methods for setting up services in an <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMethodReturnValue.Global")]
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -57,7 +57,7 @@ namespace SimplyArchitecture.WebApi.Extensions
         {
             if (services == null) throw new ArgumentNullException(paramName: nameof(services));
 
-            services.AddAutoMapper(cfg =>
+            services.AddAutoMapper(configAction: cfg =>
             {
                 cfg.CreateMap<PersonEntity, PersonDto>();
                 cfg.CreateMap<PersonDto, PersonEntity>();

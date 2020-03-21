@@ -6,7 +6,7 @@ namespace SimplyArchitecture.WebApi.Validators
     /// <summary>
     ///     Ensures that the value of the specified property is greater than a particular value (or greater than the value of another property).
     /// </summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "MemberCanBePrivate.Global")]
     public class GreaterThan : ValidationAttribute
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace SimplyArchitecture.WebApi.Validators
         /// <inheritdoc />
         public override bool IsValid(object value)
         {
-            return value != null && int.TryParse(value.ToString(), out var res) && res > Value;
+            return value != null && int.TryParse(s: value.ToString(), result: out var res) && res > Value;
         }
     }
 }

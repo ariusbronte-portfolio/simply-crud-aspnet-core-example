@@ -12,7 +12,7 @@ namespace SimplyArchitecture.WebApi.Abstractions
     /// <summary>
     ///     The base controller implementation.
     /// </summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "MemberCanBePrivate.Global")]
     public abstract class AbstractController<TEntity, TDto> : ControllerBase where TEntity : class
     {
         /// <inheritdoc cref="SimplyArchitecture.WebApi.Abstractions.IRepository{TEntity}"/>
@@ -38,8 +38,8 @@ namespace SimplyArchitecture.WebApi.Abstractions
         /// </summary>
         protected AbstractController(IRepository<TEntity> repository, IMapper mapper)
         {
-            Repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            Repository = repository ?? throw new ArgumentNullException(paramName: nameof(repository));
+            Mapper = mapper ?? throw new ArgumentNullException(paramName: nameof(mapper));
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace SimplyArchitecture.WebApi.Abstractions
         public async Task<ActionResult<IEnumerable<TDto>>> Get(CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entities = await Repository.GetAsync(cancellationToken);
-            var response = Mapper.Map<IEnumerable<TEntity>, IEnumerable<TDto>>(entities);
-            return Ok(response);
+            var entities = await Repository.GetAsync(cancellationToken: cancellationToken);
+            var response = Mapper.Map<IEnumerable<TEntity>, IEnumerable<TDto>>(source: entities);
+            return Ok(value: response);
         }
         
         /// <summary>
@@ -72,10 +72,10 @@ namespace SimplyArchitecture.WebApi.Abstractions
         public async Task<ActionResult<TDto>> GetById(long id, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entity = await Repository.FindByIdAsync(id, cancellationToken);
+            var entity = await Repository.FindByIdAsync(id: id, cancellationToken: cancellationToken);
             if (entity == null) return NotFound();
-            var response = Mapper.Map<TEntity, TDto>(entity);
-            return Ok(response);
+            var response = Mapper.Map<TEntity, TDto>(source: entity);
+            return Ok(value: response);
         }
         
         /// <summary>
@@ -92,10 +92,10 @@ namespace SimplyArchitecture.WebApi.Abstractions
         public async Task<ActionResult<TDto>> Create([FromBody] TDto item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entity = Mapper.Map<TDto, TEntity>(item);
-            var response = await Repository.CreateAsync(entity, cancellationToken);
-            var dto = Mapper.Map<TEntity, TDto>(response);
-            return Created(nameof(GetById), dto);
+            var entity = Mapper.Map<TDto, TEntity>(source: item);
+            var response = await Repository.CreateAsync(item: entity, cancellationToken: cancellationToken);
+            var dto = Mapper.Map<TEntity, TDto>(source: response);
+            return Created(uri: nameof(GetById), value: dto);
         }
         
         /// <summary>
@@ -112,8 +112,8 @@ namespace SimplyArchitecture.WebApi.Abstractions
         public async Task<IActionResult> UpdateTodoItem([FromBody] TDto item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entity = Mapper.Map<TDto, TEntity>(item);
-            await Repository.UpdateAsync(entity, cancellationToken);
+            var entity = Mapper.Map<TDto, TEntity>(source: item);
+            await Repository.UpdateAsync(item: entity, cancellationToken: cancellationToken);
             return NoContent();
         }
 
@@ -129,8 +129,8 @@ namespace SimplyArchitecture.WebApi.Abstractions
         public async Task<IActionResult> Delete([FromBody] TDto item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entity = Mapper.Map<TDto, TEntity>(item);
-            await Repository.RemoveAsync(entity, cancellationToken);
+            var entity = Mapper.Map<TDto, TEntity>(source: item);
+            await Repository.RemoveAsync(item: entity, cancellationToken: cancellationToken);
             return NoContent();
         }
     }

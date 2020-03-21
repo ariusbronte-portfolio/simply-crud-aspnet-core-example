@@ -19,7 +19,7 @@ namespace SimplyArchitecture.WebApi.Implementations
         /// </summary>
         public Repository(SimplyArchitectureDbContext dbContext)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = dbContext ?? throw new ArgumentNullException(paramName: nameof(dbContext));
             DbSet = _dbContext.Set<TEntity>();
         }
 
@@ -30,7 +30,7 @@ namespace SimplyArchitecture.WebApi.Implementations
         public async Task<IEnumerable<TEntity>> GetAsync(CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            return await DbSet.ToArrayAsync(cancellationToken);
+            return await DbSet.ToArrayAsync(cancellationToken: cancellationToken);
         }
         
         /// <inheritdoc />
@@ -44,8 +44,8 @@ namespace SimplyArchitecture.WebApi.Implementations
         public async Task<TEntity> CreateAsync(TEntity item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entity = await DbSet.AddAsync(item, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            var entity = await DbSet.AddAsync(entity: item, cancellationToken: cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken: cancellationToken);
             return entity.Entity;
         }
 
@@ -53,16 +53,16 @@ namespace SimplyArchitecture.WebApi.Implementations
         public async Task UpdateAsync(TEntity item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            DbSet.Update(item);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            DbSet.Update(entity: item);
+            await _dbContext.SaveChangesAsync(cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
         public async Task RemoveAsync(TEntity item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            DbSet.Remove(item);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            DbSet.Remove(entity: item);
+            await _dbContext.SaveChangesAsync(cancellationToken: cancellationToken);
         }
 
         private bool _disposed;
@@ -84,8 +84,8 @@ namespace SimplyArchitecture.WebApi.Implementations
         /// <inheritdoc cref="IDisposable.Dispose" />
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            Dispose(disposing: true);
+            GC.SuppressFinalize(obj: this);
         }
     }
 }

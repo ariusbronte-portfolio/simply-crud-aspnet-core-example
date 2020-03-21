@@ -10,7 +10,7 @@ namespace SimplyArchitecture.WebApi.Abstractions
     /// <summary>
     ///     The base implementation of repository pattern.
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMemberInSuper.Global")]
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
         /// <summary>
