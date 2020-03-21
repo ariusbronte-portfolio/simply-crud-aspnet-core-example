@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using SimplyArchitecture.WebApi.Configurations;
 using SimplyArchitecture.WebApi.Domain;
 
 namespace SimplyArchitecture.WebApi.DataAccess
@@ -28,6 +29,7 @@ namespace SimplyArchitecture.WebApi.DataAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(modelBuilder: builder);
+            builder.ApplyConfiguration(new PersonEntityConfiguration());
         }
         
         /// <inheritdoc />
