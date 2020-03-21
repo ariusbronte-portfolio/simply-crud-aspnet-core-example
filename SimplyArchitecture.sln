@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5767886B-815
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplyArchitecture.WebApi", "src\SimplyArchitecture.WebApi\SimplyArchitecture.WebApi.csproj", "{17457742-FDF3-4A91-B939-5DD514F950FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B8D70CBD-D160-4704-9702-9DD81C096CD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplyArchitecture.Tests.Unit", "test\SimplyArchitecture.Tests.Unit\SimplyArchitecture.Tests.Unit.csproj", "{D32CE3C5-59EB-4066-ABD8-3136494429C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{17457742-FDF3-4A91-B939-5DD514F950FD}.Release|x64.Build.0 = Release|Any CPU
 		{17457742-FDF3-4A91-B939-5DD514F950FD}.Release|x86.ActiveCfg = Release|Any CPU
 		{17457742-FDF3-4A91-B939-5DD514F950FD}.Release|x86.Build.0 = Release|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Debug|x64.Build.0 = Debug|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Debug|x86.Build.0 = Debug|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Release|x64.ActiveCfg = Release|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Release|x64.Build.0 = Release|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{17457742-FDF3-4A91-B939-5DD514F950FD} = {5767886B-8158-4478-9945-334DE57B2545}
+		{D32CE3C5-59EB-4066-ABD8-3136494429C1} = {B8D70CBD-D160-4704-9702-9DD81C096CD8}
 	EndGlobalSection
 EndGlobal
