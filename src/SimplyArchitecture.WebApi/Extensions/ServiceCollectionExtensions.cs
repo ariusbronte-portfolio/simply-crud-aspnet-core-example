@@ -45,5 +45,25 @@ namespace SimplyArchitecture.WebApi.Extensions
             return services;
         }
 
+        /// <summary>
+        ///     Scan classes and register the configuration, mapping, and extensions with the service collection
+        /// </summary>
+        /// <param name="services">The <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
+        /// <exception cref="System.ArgumentNullException">
+        ///    Thrown if <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/> is nullable
+        /// </exception>
+        /// <returns>The <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        {
+            if (services == null) throw new ArgumentNullException(paramName: nameof(services));
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.CreateMap<PersonEntity, PersonDto>();
+                cfg.CreateMap<PersonDto, PersonEntity>();
+            }, typeof(Startup));
+
+            return services;
+        }
     }
 }

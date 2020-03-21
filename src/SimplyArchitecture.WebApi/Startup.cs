@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimplyArchitecture.WebApi.Abstractions;
 using SimplyArchitecture.WebApi.DataAccess;
 using SimplyArchitecture.WebApi.Extensions;
+using SimplyArchitecture.WebApi.Implementations;
 
 namespace SimplyArchitecture.WebApi
 {
@@ -23,6 +25,8 @@ namespace SimplyArchitecture.WebApi
             {
                 options.UseSqlite("Filename=database.db");
             });
+            
+            services.AddAutoMapper();
             services.AddSwaggerGenerator();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
