@@ -29,7 +29,7 @@ namespace SimplyArchitecture.WebApi.DataAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(modelBuilder: builder);
-            builder.ApplyConfiguration(new PersonEntityConfiguration());
+            builder.ApplyConfiguration(configuration: new PersonEntityConfiguration());
         }
         
         /// <inheritdoc />
