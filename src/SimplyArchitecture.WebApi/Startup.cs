@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimplyArchitecture.WebApi.DataAccess;
 
 namespace SimplyArchitecture.WebApi
 {
@@ -16,6 +18,10 @@ namespace SimplyArchitecture.WebApi
         /// <param name="services">Defines a contract for a collection of service descriptors.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SimplyArchitectureDbContext>(options =>
+            {
+                options.UseSqlite("Filename=database.db");
+            });
             services.AddControllers();
         }
 
