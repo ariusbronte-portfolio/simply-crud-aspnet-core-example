@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SimplyArchitecture.Tests.Unit.Validators
 {
-    /// <inheritdoc cref="SimplyArchitecture.WebApi.Validators.GreaterThan"/>
+    /// <inheritdoc cref="SimplyArchitecture.WebApi.Validators.GreaterThanAttribute"/>
     public class GreaterThanTest
     {
         [Fact]
@@ -14,7 +14,7 @@ namespace SimplyArchitecture.Tests.Unit.Validators
             const int arg1 = 1;
             
             // Act
-            var greaterThan = new GreaterThan(arg);
+            var greaterThan = new GreaterThanAttribute(arg);
             var validation = greaterThan.IsValid(arg1);
             
             // Arrange
@@ -28,7 +28,7 @@ namespace SimplyArchitecture.Tests.Unit.Validators
             const int arg = 0;
             
             // Act
-            var greaterThan = new GreaterThan(arg);
+            var greaterThan = new GreaterThanAttribute(arg);
             var validation = greaterThan.IsValid(arg);
             
             // Arrange
@@ -43,7 +43,7 @@ namespace SimplyArchitecture.Tests.Unit.Validators
             const int arg1 = -1;
             
             // Act
-            var greaterThan = new GreaterThan(arg);
+            var greaterThan = new GreaterThanAttribute(arg);
             var validation = greaterThan.IsValid(arg1);
             
             // Arrange
