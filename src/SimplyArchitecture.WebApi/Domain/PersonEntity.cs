@@ -43,7 +43,7 @@ namespace SimplyArchitecture.WebApi.Domain
         /// <summary>
         ///     Gets system creation history time.
         /// </summary>
-        /// <remarks>Created in Universal Coordinated Universal Time (UTC).</remarks>
+        /// <remarks>Created in Universal Coordinated Time (UTC).</remarks>
         public DateTimeOffset CreationHistory { get; private set; }
     }
 }

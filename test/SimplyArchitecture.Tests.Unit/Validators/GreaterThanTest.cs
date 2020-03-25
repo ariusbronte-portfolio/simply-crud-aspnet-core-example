@@ -14,11 +14,11 @@ namespace SimplyArchitecture.Tests.Unit.Validators
             const int arg1 = 1;
             
             // Act
-            var greaterThan = new GreaterThanAttribute(arg);
-            var validation = greaterThan.IsValid(arg1);
+            var greaterThan = new GreaterThanAttribute(value: arg);
+            var validation = greaterThan.IsValid(value: arg1);
             
             // Arrange
-            Assert.True(validation);
+            Assert.True(condition: validation);
         }
         
         [Fact]
@@ -28,11 +28,11 @@ namespace SimplyArchitecture.Tests.Unit.Validators
             const int arg = 0;
             
             // Act
-            var greaterThan = new GreaterThanAttribute(arg);
-            var validation = greaterThan.IsValid(arg);
+            var greaterThan = new GreaterThanAttribute(value: arg);
+            var validation = greaterThan.IsValid(value: arg);
             
             // Arrange
-            Assert.False(validation);
+            Assert.False(condition: validation);
         }
 
         [Fact]
@@ -43,11 +43,11 @@ namespace SimplyArchitecture.Tests.Unit.Validators
             const int arg1 = -1;
             
             // Act
-            var greaterThan = new GreaterThanAttribute(arg);
-            var validation = greaterThan.IsValid(arg1);
+            var greaterThan = new GreaterThanAttribute(value: arg);
+            var validation = greaterThan.IsValid(value: arg1);
             
             // Arrange
-            Assert.False(validation);
+            Assert.False(condition: validation);
         }
     }
 }

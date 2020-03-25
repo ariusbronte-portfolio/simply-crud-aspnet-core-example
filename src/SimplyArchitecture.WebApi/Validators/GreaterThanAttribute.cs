@@ -9,7 +9,7 @@ namespace SimplyArchitecture.WebApi.Validators
     ///     Validation attribute to assert a integer property, field or parameter does not greater than particular value.
     /// </summary>
     [SuppressMessage(category: "ReSharper", checkId: "MemberCanBePrivate.Global")]
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
+    [AttributeUsage(validOn: AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
     public class GreaterThanAttribute : ValidationAttribute
     {
         /// <summary>
@@ -41,7 +41,7 @@ namespace SimplyArchitecture.WebApi.Validators
         public override string FormatErrorMessage(string name)
         {
             const string errorMessage = "The field {0} must be greater than {1}.";
-            return string.Format(CultureInfo.CurrentCulture, errorMessage, name, Value);
+            return string.Format(provider: CultureInfo.CurrentCulture, format: errorMessage, arg0: name, arg1: Value);
         }
     }
 }

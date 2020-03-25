@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using SimplyArchitecture.WebApi.Validators;
 
 namespace SimplyArchitecture.WebApi.Dto
@@ -6,6 +7,7 @@ namespace SimplyArchitecture.WebApi.Dto
     /// <summary>
     ///     Presents the essence of the persons.
     /// </summary>
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Global")]
     public class PersonDto
     {
         /// <summary>

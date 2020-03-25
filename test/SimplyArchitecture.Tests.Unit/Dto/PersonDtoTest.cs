@@ -19,11 +19,11 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             };
 
             // Act
-            var context = new ValidationContext(dto);
-            var success = Validator.TryValidateObject(dto, context, null);
+            var context = new ValidationContext(instance: dto);
+            var success = Validator.TryValidateObject(instance: dto, validationContext: context, validationResults: null);
 
             // Assert
-            Assert.True(success);
+            Assert.True(condition: success);
         }
 
         [Fact]
@@ -39,13 +39,13 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             // Act
             var action = new Action(() =>
             {
-                var context = new ValidationContext(dto);
-                Validator.ValidateObject(dto, context, true);
+                var context = new ValidationContext(instance: dto);
+                Validator.ValidateObject(instance: dto, validationContext: context, validateAllProperties: true);
             });
 
             // Assert
-            var exception = Assert.Throws<ValidationException>(action);
-            Assert.Equal("The FirstName field is required.", exception.Message);
+            var exception = Assert.Throws<ValidationException>(testCode: action);
+            Assert.Equal(expected: "The FirstName field is required.", actual: exception.Message);
         }
         
         [Fact]
@@ -54,7 +54,7 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             // Arrange
             var dto = new PersonDto
             {
-                FirstName = new string('z', 256), 
+                FirstName = new string(c: 'z', count: 256), 
                 LastName = "lastName",
                 Age = 18
             };
@@ -62,13 +62,13 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             // Act
             var action = new Action(() =>
             {
-                var context = new ValidationContext(dto);
-                Validator.ValidateObject(dto, context, true);
+                var context = new ValidationContext(instance: dto);
+                Validator.ValidateObject(instance: dto, validationContext: context, validateAllProperties: true);
             });
 
             // Assert
-            var exception = Assert.Throws<ValidationException>(action);
-            Assert.Equal("The field FirstName must be a string with a maximum length of 128.", exception.Message);
+            var exception = Assert.Throws<ValidationException>(testCode: action);
+            Assert.Equal(expected: "The field FirstName must be a string with a maximum length of 128.", actual: exception.Message);
         }
         
         [Fact]
@@ -84,13 +84,13 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             // Act
             var action = new Action(() =>
             {
-                var context = new ValidationContext(dto);
-                Validator.ValidateObject(dto, context, true);
+                var context = new ValidationContext(instance: dto);
+                Validator.ValidateObject(instance: dto, validationContext: context, validateAllProperties: true);
             });
 
             // Assert
-            var exception = Assert.Throws<ValidationException>(action);
-            Assert.Equal("The LastName field is required.", exception.Message);
+            var exception = Assert.Throws<ValidationException>(testCode: action);
+            Assert.Equal(expected: "The LastName field is required.", actual: exception.Message);
         }
         
         [Fact]
@@ -100,20 +100,20 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             var dto = new PersonDto
             {
                 FirstName = "firstName",
-                LastName = new string('z', 256), 
+                LastName = new string(c: 'z', count: 256), 
                 Age = 18
             };
 
             // Act
             var action = new Action(() =>
             {
-                var context = new ValidationContext(dto);
-                Validator.ValidateObject(dto, context, true);
+                var context = new ValidationContext(instance: dto);
+                Validator.ValidateObject(instance: dto, validationContext: context, validateAllProperties: true);
             });
 
             // Assert
-            var exception = Assert.Throws<ValidationException>(action);
-            Assert.Equal("The field LastName must be a string with a maximum length of 128.", exception.Message);
+            var exception = Assert.Throws<ValidationException>(testCode: action);
+            Assert.Equal(expected: "The field LastName must be a string with a maximum length of 128.", actual: exception.Message);
         }
         
         [Fact]
@@ -130,13 +130,13 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             // Act
             var action = new Action(() =>
             {
-                var context = new ValidationContext(dto);
-                Validator.ValidateObject(dto, context, true);
+                var context = new ValidationContext(instance: dto);
+                Validator.ValidateObject(instance: dto, validationContext: context, validateAllProperties: true);
             });
 
             // Assert
-            var exception = Assert.Throws<ValidationException>(action);
-            Assert.Equal("The field Age must be greater than 0.", exception.Message);
+            var exception = Assert.Throws<ValidationException>(testCode: action);
+            Assert.Equal(expected: "The field Age must be greater than 0.", actual: exception.Message);
         }
         
         [Fact]
@@ -153,13 +153,13 @@ namespace SimplyArchitecture.Tests.Unit.Dto
             // Act
             var action = new Action(() =>
             {
-                var context = new ValidationContext(dto);
-                Validator.ValidateObject(dto, context, true);
+                var context = new ValidationContext(instance: dto);
+                Validator.ValidateObject(instance: dto, validationContext: context, validateAllProperties: true);
             });
 
             // Assert
-            var exception = Assert.Throws<ValidationException>(action);
-            Assert.Equal("The field Age must be greater than 0.", exception.Message);
+            var exception = Assert.Throws<ValidationException>(testCode: action);
+            Assert.Equal(expected: "The field Age must be greater than 0.", actual: exception.Message);
         }
     }
 }
