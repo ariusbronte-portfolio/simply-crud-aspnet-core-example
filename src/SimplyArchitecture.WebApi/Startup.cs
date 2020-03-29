@@ -25,7 +25,8 @@ namespace SimplyArchitecture.WebApi
             {
                 options.UseSqlite(connectionString: "Filename=database.db");
             });
-            
+
+            services.AddHostServices();
             services.AddAutoMapper();
             services.AddSwaggerGenerator();
             services.AddScoped(serviceType: typeof(IRepository<>), implementationType: typeof(Repository<>));
