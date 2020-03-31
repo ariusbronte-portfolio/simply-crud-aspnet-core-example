@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net.Mime;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SimplyArchitecture.WebApi.Abstractions;
 using SimplyArchitecture.WebApi.Domain;
@@ -11,7 +12,7 @@ namespace SimplyArchitecture.WebApi.Controllers
     /// </summary>
     [ApiController]
     [Route(template: "[controller]")]
-    [Produces(contentType: "application/json")]
+    [Produces(MediaTypeNames.Application.Json)]
     public class PersonController : AbstractController<PersonEntity, PersonDto>
     {
         /// <inheritdoc />
