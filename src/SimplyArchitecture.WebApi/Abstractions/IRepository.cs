@@ -27,7 +27,7 @@ namespace SimplyArchitecture.WebApi.Abstractions
         ///     Finds an object by a unique value in the database.
         /// </summary>
         Task<TEntity> FindByIdAsync(long id, CancellationToken cancellationToken = default);
-
+        
         /// <summary>
         ///     Creates an object in database.
         /// </summary>

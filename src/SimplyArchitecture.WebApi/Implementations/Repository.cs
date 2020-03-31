@@ -39,7 +39,7 @@ namespace SimplyArchitecture.WebApi.Implementations
             cancellationToken.ThrowIfCancellationRequested();
             return await DbSet.FindAsync(id);
         }
-        
+
         /// <inheritdoc />
         public async Task<TEntity> CreateAsync(TEntity item, CancellationToken cancellationToken = default)
         {
