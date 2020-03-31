@@ -17,10 +17,10 @@ namespace SimplyArchitecture.WebApi.Abstractions
     {
         /// <inheritdoc cref="SimplyArchitecture.WebApi.Abstractions.IRepository{TEntity}"/>
         protected readonly IRepository<TEntity> Repository;
-        
+
         /// <inheritdoc cref="AutoMapper.IMapper"/>
         protected readonly IMapper Mapper;
-        
+
         /// <summary>
         ///     <para>
         ///         Initializes a new instance of the <see cref="SimplyArchitecture.WebApi.Abstractions.AbstractController{TEntity, TDto}"/> class.
@@ -57,7 +57,7 @@ namespace SimplyArchitecture.WebApi.Abstractions
             var response = Mapper.Map<IEnumerable<TEntity>, IEnumerable<TDto>>(source: entities);
             return Ok(value: response);
         }
-        
+
         /// <summary>
         ///     Get item by id.
         /// </summary>
@@ -65,9 +65,11 @@ namespace SimplyArchitecture.WebApi.Abstractions
         /// <param name="cancellationToken">Client closed connection.</param>
         /// <returns>The concrete item.</returns>
         /// <response code="200">Return the concrete item.</response>
+        /// <response code="400">If the item will not pass validation.</response>
         /// <response code="404">If the item not found.</response>
         [HttpGet(template: "{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
         [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TDto>> GetById(long id, CancellationToken cancellationToken = default)
         {
@@ -77,7 +79,7 @@ namespace SimplyArchitecture.WebApi.Abstractions
             var response = Mapper.Map<TEntity, TDto>(source: entity);
             return Ok(value: response);
         }
-        
+
         /// <summary>
         ///     Creates a new item.
         /// </summary>
@@ -97,7 +99,7 @@ namespace SimplyArchitecture.WebApi.Abstractions
             var dto = Mapper.Map<TEntity, TDto>(source: response);
             return Created(uri: nameof(GetById), value: dto);
         }
-        
+
         /// <summary>
         ///     Update item.
         /// </summary>
@@ -106,9 +108,10 @@ namespace SimplyArchitecture.WebApi.Abstractions
         /// <returns>Nothing.</returns>
         /// <response code="204">Nothing.</response>
         /// <response code="400">If the item will not pass validation.</response>
+        /// <response code="404">If the item not found.</response>
         [HttpPut]
         [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateTodoItem([FromBody] TDto item, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -120,17 +123,22 @@ namespace SimplyArchitecture.WebApi.Abstractions
         /// <summary>
         ///     Delete item.
         /// </summary>
-        /// <param name="item">Request body.</param>
+        /// <param name="id">Request body.</param>
         /// <param name="cancellationToken">Client closed connection.</param>
         /// <returns>Nothing.</returns>
         /// <response code="204">Nothing.</response>
-        [HttpDelete]
+        /// <response code="400">If the item will not pass validation.</response>
+        /// <response code="404">If the item not found.</response>
+        [HttpDelete(template: "{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Delete([FromBody] TDto item, CancellationToken cancellationToken = default)
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete(long id, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var entity = Mapper.Map<TDto, TEntity>(source: item);
-            await Repository.RemoveAsync(item: entity, cancellationToken: cancellationToken);
+            var entity = await Repository.FindByIdAsync(id, cancellationToken);
+            if (entity == null) return NotFound();
+            await Repository.RemoveAsync(entity, cancellationToken: cancellationToken);
             return NoContent();
         }
     }
