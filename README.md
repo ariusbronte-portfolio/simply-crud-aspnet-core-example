@@ -12,6 +12,7 @@ this is a demo project of the simple architecture of the crud app
 - AutoMapper
 - EntityFrameworkCore
 - Swagger
+- xunit
 
 ## Attention
 don't use this app in production. this is a demo project
