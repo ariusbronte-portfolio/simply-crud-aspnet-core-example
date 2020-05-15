@@ -1,5 +1,4 @@
 # simply-crud-aspnet-core
-an example implementation of a simple crud in aspnet core
 
 ## What is it?
 this is a demo project of the simple architecture of the crud app
